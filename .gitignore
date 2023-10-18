@@ -1,0 +1,7 @@
+.classpath
+.settings
+.project
+target/
+src/main/resources/application.properties
+bdd.mv.db
+bdd.trace.db
