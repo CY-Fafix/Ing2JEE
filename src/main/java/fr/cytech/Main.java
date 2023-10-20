@@ -1,13 +1,13 @@
-package fr.cytech.ingredient;
+package fr.cytech;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class test {
+public class Main {
 
 	public static void main(String[] args) {
-		SpringApplication.run(test.class, args);
+		SpringApplication.run(Main.class, args);
 	}
 
 }
