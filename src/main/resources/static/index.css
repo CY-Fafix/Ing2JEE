@@ -1,0 +1,152 @@
+/* Réinitialisation des marges et padding par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #f7f7f7;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav li {
+    margin-right: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ecf0f1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #3498db;
+}
+
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.recherche {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.recherche h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.recherche input[type="text"] {
+    padding: 0.5rem;
+    width: 70%;
+    border: 1px solid #bdc3c7;
+    border-radius: 0.3rem;
+}
+
+.recherche button {
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recherche button:hover {
+    background-color: #2980b9;
+}
+
+.recettes-recentes h2 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #bdc3c7;
+    padding-bottom: 0.5rem;
+}
+
+.recette {
+    background-color: #fff;
+    border: 1px solid #bdc3c7;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.recette h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.recette a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+footer p {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+footer nav li {
+    margin-right: 1rem;
+}
+
+footer nav a {
+    text-decoration: none;
+    color: #ecf0f1;
+    transition: color 0.3s ease;
+}
+
+footer nav a:hover {
+    color: #3498db;
+}
