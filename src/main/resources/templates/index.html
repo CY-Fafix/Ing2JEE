@@ -1,49 +1,44 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Plateforme de Recettes de Cuisine</title>
-    <!-- Vous pouvez ajouter des liens vers des frameworks CSS comme Bootstrap si vous le souhaitez -->
+    <title>Accueil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+    	<link rel="stylesheet" th:href="@{/index.css}" type="text/css">
+    <!-- ... autres balises du head -->
 </head>
-
 <body>
 
-    <!-- Barre de navigation (si nécessaire) -->
-    <nav>
-        <!-- Liens de navigation, logo, etc. peuvent être ajoutés ici -->
-    </nav>
+    <!-- Inclure l'entête -->
+    <div th:replace="header :: header"></div>
 
-    <!-- Contenu principal -->
-    <main>
-        <!-- Barre de recherche -->
-        <section>
-            <h2>Rechercher une recette</h2>
-            <form action="#" method="get"> <!-- # signifie que l'action est vide pour l'instant, à remplir une fois que le back-end sera prêt -->
-                <input type="text" name="query" placeholder="Recherche...">
+    <!-- Contenu spécifique à la page d'accueil -->
+    		    <main>
+        <section class="recherche">
+            <h1>Cherchez vos recettes préférées</h1>
+            <form action="/recherche" method="GET">
+                <input type="text" name="q" placeholder="Recherche...">
                 <button type="submit">Rechercher</button>
             </form>
         </section>
 
-        <!-- Liste des recettes récentes -->
-        <section>
-            <h2>Recettes récentes</h2>
-            <ul>
-                <!-- Les éléments li suivants sont des exemples. Ils seront générés dynamiquement une fois que vous aurez un back-end. -->
-                <li><a href="#">Recette 1</a></li>
-                <li><a href="#">Recette 2</a></li>
-                <li><a href="#">Recette 3</a></li>
-                <!-- etc. -->
-            </ul>
+        <section class="recettes-recentes">
+            <h2>Les recettes les plus récentes</h2>
+            <!-- Ici, il y aura un espace pour afficher les recettes une fois intégrées avec le backend -->
+            <div id="liste-recettes">
+                <!-- Exemple d'une recette (ceci sera généré dynamiquement côté serveur) -->
+                <!--
+                <div class="recette">
+                    <h3>Titre de la recette</h3>
+                    <p>Créée par <span>Auteur</span></p>
+                    <a href="/recette/id-de-la-recette">Voir les détails</a>
+                </div>
+                -->
+            </div>
         </section>
     </main>
 
-    <!-- Pied de page (si nécessaire) -->
-    <footer>
-        <!-- Informations de copyright, liens supplémentaires, etc. peuvent être ajoutés ici -->
-    </footer>
+    <!-- Inclure le footer -->
+    <div th:replace="footer :: footer"></div>
 
 </body>
-
 </html>
