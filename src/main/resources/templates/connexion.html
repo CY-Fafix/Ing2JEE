@@ -1,0 +1,71 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+    	<link rel="stylesheet" th:href="@{/index.css}" type="text/css">
+     ... autres balises du head 
+</head>
+<body>
+	
+	 Inclure l'entête 
+    <div th:replace="header :: header"></div>
+<main>
+<form th:action="@{/connexion}" method="post" th:object="${utilisateur}">
+    <label for="mail">Adresse e-mail :</label>
+    <input type="email" id="mail" name="mail" required/>
+
+    <br/>
+
+    <label for="mdp">Mot de passe :</label>
+    <input type="password" id="mdp" name="mdp" required/>
+
+    <br/>
+
+    <button type="submit">Se connecter</button>
+</form>
+</main>
+	<div th:if="${erreur}" class="erreur">
+    	<p th:text="${erreur}"></p>
+	</div>
+	
+
+     Inclure le footer 
+    <div th:replace="footer :: footer"></div>
+
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+    <link rel="stylesheet" th:href="@{/index.css}" type="text/css">
+    <!-- ... autres balises du head -->
+</head>
+<body>
+
+<!-- Inclure l'entête -->
+<div th:replace="header :: header"></div>
+<main>
+    <form class="connexion-form" th:action="@{/connexion}" method="post" th:object="${utilisateur}">
+        <label for="mail">Adresse e-mail :</label>
+        <input class="input-field" type="email" id="mail" name="mail" required/>
+
+        <label for="mdp">Mot de passe :</label>
+        <input class="input-field" type="password" id="mdp" name="mdp" required/>
+
+        <button class="submit-button" type="submit">Se connecter</button>
+    </form>
+    <div th:if="${erreur}" class="erreur">
+        <p th:text="${erreur}"></p>
+    </div>
+</main>
+
+<!-- Inclure le footer -->
+<div th:replace="footer :: footer"></div>
+
+</body>
+</html>
+
