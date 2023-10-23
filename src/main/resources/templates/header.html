@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<body>
+
 <div th:fragment="header">
     <header>
         <div class="logo">Logo a rajouter</div>
         <nav>
             <ul>
                 <li><a href="/">Accueil</a></li>
-                <li><a href="/inscription">Inscription</a></li>
-                <li><a href="/connexion">Connexion</a></li>
+                <li><a th:href="@{/ajouterUtilisateur}">Inscription</a></li>
+                <li><a th:href="@{/ajouterUtilisateur}">Connexion</a></li>
                 <li><a href="/profil">Mon Profil</a></li>
                 <li><a href="/nouvelle-recette">Créer une recette</a></li>
                 <li><a href="/deconnexion">Déconnexion</a></li>
@@ -17,5 +15,3 @@
         </nav>
     </header>
 </div>
-</body>
-</html>

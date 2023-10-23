@@ -1,0 +1,39 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div th:replace="header :: header"></div>
+
+    <main>
+        <div class="inscription-container">
+            <h2>Inscription</h2>
+            <form th:action="@{/ajouter_Utilisateur}" method="post" th:object="${utilisateur}">
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="mail">Email:</label>
+                    <input type="email" id="mail" name="mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="mdp">Mot de passe:</label>
+                    <input type="password" id="mdp" name="mdp" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="S'inscrire">
+                </div>
+            </form>
+        </div>
+    </main>
+
+
+    <div th:replace="footer :: footer"></div>
+
+</body>
+</html>

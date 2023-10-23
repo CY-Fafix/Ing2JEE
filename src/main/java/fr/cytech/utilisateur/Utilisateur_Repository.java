@@ -1,0 +1,9 @@
+package fr.cytech.utilisateur;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface Utilisateur_Repository  extends JpaRepository<Utilisateur, Long> {
+	
+	
+
+}
