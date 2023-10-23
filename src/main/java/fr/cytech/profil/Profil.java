@@ -1,6 +1,7 @@
 package fr.cytech.profil;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import fr.cytech.utilisateur.Utilisateur;
 import jakarta.persistence.*;
@@ -10,7 +11,7 @@ public class Profil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
     private Date dateDeNaissance;
 	private String bio;
 	@OneToOne

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="creerProfil.css">
+</head>
+<body>
+	
+		<div th:replace="header :: header"></div>
+		<main>
+		
+	    <form th:action="@{/ajouter_Profil}" method="post" th:object="${profil}" >
+	        <label>Date de Naissance:</label>
+	        <input type="date" name="dateDeNaissance" id="dateDeNaissance" ><br>
+	
+	        <label>Biographie:</label>
+	        <input type="text" name="bio" id="bio"required></input><br>
+	
+	        <input type="submit" value="Envoyer"></input>
+	    </form>
+	   	</main>
+	    <div th:replace="footer :: footer"></div>
+	   
+</body>
+</html>
