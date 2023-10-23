@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Création de Recette</title>
+    <link rel="stylesheet" th:href="@{/index.css}">
+<link rel="stylesheet" th:href="@{/ajouterRecette.css}">
+
+</head>
+<body>
+	
+	<!--Garder en mémoire :  
+	Ingrédients : 	
+		private String nom;
+	
+	ingredientRecette :
+    	private Ingredient ingredient;
+    	@ManyToOne
+    	private Recette recette;
+    	private Double quantite; FAIT
+    	private String unite; FAIT
+	Recette : 
+		private String nom;	
+		private String titre; FAIT
+    	private String description; FAIT
+	
+	-->
+	
+    <div th:replace="header :: header"></div>
+
+    <main>
+        <div class="recette-container">
+            <h2>Création de Recette</h2>
+             <!-- On retourne l'objet recette' -->
+            <form th:action="@{/ajouter_recette}" method="post" th:object="${recette}">
+                
+                <!-- Titre -->
+                <div class="form-group">
+                    <label for="titre">Titre:</label>
+					<!-- CHANGER BDD METTRE nom_recette -->
+                    <input type="text" id="titre" name="titre" required>
+                </div>
+                
+                <!-- Description-->
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="5" required></textarea>
+                </div>
+                
+                <hr>
+                <h3>Ingrédients</h3>
+				<!-- On encapsule le form d'ingrédients pour le dupliquer avec le js -->
+                <div id="ingredientsList">
+                    <!-- L'original qu'on va dupliquer -->
+                    <div class="ingredient-group">
+						
+                        <div class="form-group">
+                            <label for="ingredient">Ingrédient:</label>
+							<!-- CHANGER BDD : nom_ingredient -->
+                            <input type="text" id="ingredient" name="ingredient" required>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="quantite">Quantité:</label>
+                            <input type="text" id="quantite" name="quantite" required>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="unite">Unité:</label>
+                            <select id="unite" name="unite">
+                                <option value="grammes">Grammes</option>
+                                <option value="litres">Litres</option>
+                                <option value="cuillères à soupe">Cuillères à soupe</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="ajouterIngredient">Ajouter un autre ingrédient</button>
+
+                <div class="form-group">
+                    <input type="submit" value="Créer la recette">
+                </div>
+            </form>
+        </div>
+    </main>
+	
+    <div th:replace="footer :: footer"></div>
+
+    <script th:src="@{/js/recette.js}" src="js/recette.js"></script>
+</body>
+</html>
