@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 
@@ -15,10 +18,15 @@ public class Controlleur_Recette {
     // Faut ajouter d'autres repo genre pour les ingrédients
     
     @GetMapping(path="/ajouterRecette")
-    public String ajouterRecetteForm(Model model) {
-        model.addAttribute("recette", new Recette());
-        // je dois changer d'autres données genre la liste d'ingrédients
-        return "ajouterRecette";  // le nom du fichier HTML de la page de création
+    public String ajouterRecetteForm(Model model,HttpSession session) {
+    	if( session.getAttribute("id_utilisateur") != null ) {
+    		model.addAttribute("recette", new Recette());
+            // je dois changer d'autres données genre la liste d'ingrédients
+            return "ajouterRecette";  // le nom du fichier HTML de la page de création
+    	} else {
+			 model.addAttribute("erreur", "Merci de se connecter pour ajouter une recette");
+    		return "connexion";
+    	}
     }
     
     //On recup de ajouterRecette.html
