@@ -21,10 +21,17 @@ public class Controlleur_Recette {
     @Autowired
     private IngredientRecette_Repository ingredientRecetteRepository;
 
-    @GetMapping("/ajouterRecette")
-    public String ajouterRecetteForm(Model model) {
-        model.addAttribute("recette", new Recette());
-        return "ajouterRecette";
+
+    @GetMapping(path="/ajouterRecette")
+    public String ajouterRecetteForm(Model model,HttpSession session) {
+    	if( session.getAttribute("id_utilisateur") != null ) {
+    		model.addAttribute("recette", new Recette());
+            // je dois changer d'autres données genre la liste d'ingrédients
+            return "ajouterRecette";  // le nom du fichier HTML de la page de création
+    	} else {
+			 model.addAttribute("erreur", "Merci de se connecter pour ajouter une recette");
+    		return "connexion";
+    	}
     }
 
     @PostMapping("/ajouter_recette")

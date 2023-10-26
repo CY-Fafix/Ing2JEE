@@ -8,7 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 import fr.cytech.utilisateur.Utilisateur;
 
 
-public interface Profil_Repository extends CrudRepository<Profil, Long>{
+public interface Profil_Repository extends JpaRepository<Profil, Long>{
 	//Optional<Profil> FindByUtilisateur(String email);
+	Profil findByUtilisateur(Utilisateur utilisateur);
 
 }

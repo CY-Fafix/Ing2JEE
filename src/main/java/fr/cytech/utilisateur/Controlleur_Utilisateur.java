@@ -26,9 +26,9 @@ public class Controlleur_Utilisateur {
 	}
 	
 	@PostMapping(path="ajouter_Utilisateur")
-	public String ajouter_Utilisateur(@ModelAttribute Utilisateur utilisateur) {
-		
+	public String ajouter_Utilisateur(@ModelAttribute Utilisateur utilisateur, HttpSession session) {
 		utilisateur_repository.save(utilisateur);
+	 	session.setAttribute("id_utilisateur", utilisateur_repository.findByMail(utilisateur.getMail()).getId());
 		return "redirect:/index";
 		
 	}
@@ -40,16 +40,22 @@ public class Controlleur_Utilisateur {
 	
 	@PostMapping(path="connexion")
 	public String connexion(@ModelAttribute Utilisateur utilisateur,HttpSession session, Model model) {
-		 if(utilisateur_repository.findByMail(utilisateur.getMail()) == null) {
+		if(utilisateur_repository.findByMail(utilisateur.getMail()) == null) {
 			 model.addAttribute("erreur", "Adresse e-mail incorrecte.");
 			 return "connexion";
-		 }else if(utilisateur.getMdp() == utilisateur_repository.findByMail(utilisateur.getMail()).getMdp()) {
+		 }else if(utilisateur.getMdp().equals(utilisateur_repository.findByMail(utilisateur.getMail()).getMdp())) {
 			 	session.setAttribute("id_utilisateur", utilisateur_repository.findByMail(utilisateur.getMail()).getId());
 			 	return "redirect:/index";
-		 }else {
+		 }else{
 			 model.addAttribute("erreur", "Mot de passe incorrect.");
 			 return "connexion";
 		 }
+	}
+	
+	@GetMapping(path="deconnexion")
+	public String deconnexion(HttpSession session) {
+		session.invalidate();
+		return "index";
 	}
 	
 }
