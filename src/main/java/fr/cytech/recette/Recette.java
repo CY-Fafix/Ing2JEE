@@ -17,15 +17,14 @@ public class Recette {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String nom;	
 	private String titre;
     private String description;
     
     @ManyToOne
 	private Utilisateur auteur;
 	
-	@OneToMany
-	private Set<IngredientRecette> ingredientRecettes = new HashSet<>();
+    @OneToMany(mappedBy = "recette")
+    private Set<IngredientRecette> ingredientRecettes = new HashSet<>();
     
     public Recette() {}
 
@@ -44,15 +43,6 @@ public class Recette {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
 
 	public String getTitre() {
 		return titre;

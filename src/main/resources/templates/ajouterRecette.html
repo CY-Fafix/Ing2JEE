@@ -14,13 +14,12 @@
 		private String nom;
 	
 	ingredientRecette :
-    	private Ingredient ingredient;
+    	private Ingredient ingredient; FAIT
     	@ManyToOne
     	private Recette recette;
     	private Double quantite; FAIT
     	private String unite; FAIT
 	Recette : 
-		private String nom;	
 		private String titre; FAIT
     	private String description; FAIT
 	
@@ -38,44 +37,41 @@
                 <div class="form-group">
                     <label for="titre">Titre:</label>
 					<!-- CHANGER BDD METTRE nom_recette -->
-                    <input type="text" id="titre" name="titre" required>
-                </div>
+					<input type="text" id="titre" th:field="*{titre}" required>
+				</div>
                 
                 <!-- Description-->
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea id="description" name="description" rows="5" required></textarea>
+					<textarea id="description" th:field="*{description}" rows="5" required></textarea>
                 </div>
                 
                 <hr>
                 <h3>Ingrédients</h3>
 				<!-- On encapsule le form d'ingrédients pour le dupliquer avec le js -->
-                <div id="ingredientsList">
-                    <!-- L'original qu'on va dupliquer -->
-                    <div class="ingredient-group">
-						
-                        <div class="form-group">
-                            <label for="ingredient">Ingrédient:</label>
-							<!-- CHANGER BDD : nom_ingredient -->
-                            <input type="text" id="ingredient" name="ingredient" required>
-                        </div>
-                    
-                        <div class="form-group">
-                            <label for="quantite">Quantité:</label>
-                            <input type="text" id="quantite" name="quantite" required>
-                        </div>
-                    
-                        <div class="form-group">
-                            <label for="unite">Unité:</label>
-                            <select id="unite" name="unite">
-                                <option value="grammes">Grammes</option>
-                                <option value="litres">Litres</option>
-                                <option value="cuillères à soupe">Cuillères à soupe</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
+				<div id="ingredientsList">
+				    <!-- L'original qu'on va dupliquer -->
+				    <div class="ingredient-group">
+				        <div class="form-group">
+				            <label for="ingredient">Ingrédient:</label>
+				            <input type="text" id="ingredient" name="nom_ingredient" required>
+				        </div>
+				    
+				        <div class="form-group">
+				            <label for="quantite">Quantité:</label>
+				            <input type="number" id="quantite" name="quantite" required>
+				        </div>
+				    
+				        <div class="form-group">
+				            <label for="unite">Unité:</label>
+				            <select id="unite" name="unite">
+				                <option value="grammes">Grammes</option>
+				                <option value="litres">Litres</option>
+				                <option value="cuillères à soupe">Cuillères à soupe</option>
+				            </select>
+				        </div>
+				    </div>
+				</div>
                 <button type="button" id="ajouterIngredient">Ajouter un autre ingrédient</button>
 
                 <div class="form-group">
