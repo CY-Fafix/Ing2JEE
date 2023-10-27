@@ -1,22 +1,36 @@
 package fr.cytech.recette;
+
+import fr.cytech.ingredient.Ingredient;
+import fr.cytech.ingredient.Ingredient_Repository;
+import fr.cytech.ingredientRecette.IngredientRecette;
+import fr.cytech.ingredientRecette.IngredientRecette_Repository;
+import fr.cytech.utilisateur.*;
+import jakarta.servlet.http.HttpSession;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import jakarta.servlet.http.HttpSession;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
-
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class Controlleur_Recette {
-	
+
     @Autowired
     private RecetteRepository recetteRepository;
-    // Faut ajouter d'autres repo genre pour les ingrédients
+
+    @Autowired
+    private Ingredient_Repository ingredientRepository;
+
+    @Autowired
+    private IngredientRecette_Repository ingredientRecetteRepository;
     
+    @Autowired
+    private Utilisateur_Repository utilisateurRepository;
+
+
+
     @GetMapping(path="/ajouterRecette")
     public String ajouterRecetteForm(Model model,HttpSession session) {
     	if( session.getAttribute("id_utilisateur") != null ) {
@@ -28,15 +42,42 @@ public class Controlleur_Recette {
     		return "connexion";
     	}
     }
-    
-    //On recup de ajouterRecette.html
-    @PostMapping(path="/ajouter_recette")
-    public String ajouterRecetteSubmit(@ModelAttribute Recette recette) {
-    	//Est-ce qu'on doit utiliser le controlleur de ingrédient ????
-        recetteRepository.save(recette);  // sauvegarde la nouvelle recette dans la BDD !
-        return "redirect:/";  // on redirige vers la page d'accueil
+
+    @PostMapping("/ajouter_recette")
+    public String ajouterRecetteSubmit(@ModelAttribute Recette recette,
+                                       @RequestParam(required = false) String[] nom_ingredient,
+                                       @RequestParam(required = false) Double[] quantite,
+                                       @RequestParam(required = false) String[] unite,
+                                       HttpSession session) {
+        System.out.println("Soumission du formulaire de recette");
+        
+        // Récupérer l'utilisateur à partir de la session
+        Long utilisateurId = (Long) session.getAttribute("id_utilisateur");
+        if(utilisateurId == null) {
+            return "redirect:/connexion";
+        }
+        Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(utilisateurId);
+        if(!optionalUtilisateur.isPresent()) {
+            return "redirect:/connexion"; 
+        }
+        Utilisateur utilisateur = optionalUtilisateur.get();
+        if(utilisateur == null) {
+            return "redirect:/connexion";
+        }
+        recette.setAuteur(utilisateur); 
+        // Enregistrement de la recette
+        Recette savedRecette = recetteRepository.save(recette);
+
+        // Traitement des ingrédients
+        for (int i = 0; i < nom_ingredient.length; i++) {
+            String ingredientNom = nom_ingredient[i];
+            Ingredient ingredient = ingredientRepository.findByNomIngredient(ingredientNom)
+                    .orElseGet(() -> ingredientRepository.save(new Ingredient(ingredientNom)));
+
+            IngredientRecette ingredientRecette = new IngredientRecette(ingredient, savedRecette, quantite[i], unite[i]);
+            ingredientRecetteRepository.save(ingredientRecette);
+        }
+
+        return "redirect:/index";
     }
-
-    // Ajoutez la modification ou la suppression de recettes
-
 }

@@ -101,3 +101,38 @@ input[type="submit"]:hover {
 #ajouterIngredient:active {
     transform: translateY
 }
+/* ... vos autres styles ... */
+
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    font-size: 1rem; /* ajustez selon vos besoins */
+}
+
+.form-group input[type="number"]:focus {
+    border-color: #fda085;
+}
+
+.ingredient-group .form-group {
+    width: 32%; /* ajustez selon vos besoins */
+    display: inline-block; /* pour mettre les champs en ligne */
+    box-sizing: border-box; /* pour inclure padding et border dans la largeur */
+}
+
+/* Espacement entre les champs d'ingrédients */
+.ingredient-group .form-group:not(:last-child) {
+    margin-right: 2%;
+}
+
+
+/* Responsive Design: Si la largeur de l'écran est inférieure à 600px */
+@media (max-width: 600px) {
+    .ingredient-group .form-group {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem; /* pour un peu d'espace entre les champs */
+    }
+}

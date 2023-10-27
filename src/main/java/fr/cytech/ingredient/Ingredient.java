@@ -15,9 +15,9 @@ public class Ingredient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String nom;
+	private String nomIngredient;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "ingredient")
 	private Set<IngredientRecette> ingredientRecettes = new HashSet<>();
 
 	
@@ -25,8 +25,8 @@ public class Ingredient {
 	// Constructeurs
     public Ingredient() {}
 
-    public Ingredient(String nom) {
-        this.nom = nom;
+    public Ingredient(String nomIngredient) {
+        this.nomIngredient = nomIngredient;
     }
 
 	public long getId() {
@@ -37,13 +37,14 @@ public class Ingredient {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getNomIngredient() {
+	    return nomIngredient;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNomIngredient(String nomIngredient) {
+	    this.nomIngredient = nomIngredient;
 	}
+
 
 	public Set<IngredientRecette> getIngredientRecettes() {
 		return ingredientRecettes;
