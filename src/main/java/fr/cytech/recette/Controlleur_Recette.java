@@ -4,7 +4,10 @@ import fr.cytech.ingredient.Ingredient;
 import fr.cytech.ingredient.Ingredient_Repository;
 import fr.cytech.ingredientRecette.IngredientRecette;
 import fr.cytech.ingredientRecette.IngredientRecette_Repository;
+import fr.cytech.utilisateur.*;
 import jakarta.servlet.http.HttpSession;
+
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,10 @@ public class Controlleur_Recette {
 
     @Autowired
     private IngredientRecette_Repository ingredientRecetteRepository;
+    
+    @Autowired
+    private Utilisateur_Repository utilisateurRepository;
+
 
 
     @GetMapping(path="/ajouterRecette")
@@ -40,8 +47,24 @@ public class Controlleur_Recette {
     public String ajouterRecetteSubmit(@ModelAttribute Recette recette,
                                        @RequestParam(required = false) String[] nom_ingredient,
                                        @RequestParam(required = false) Double[] quantite,
-                                       @RequestParam(required = false) String[] unite) {
+                                       @RequestParam(required = false) String[] unite,
+                                       HttpSession session) {
         System.out.println("Soumission du formulaire de recette");
+        
+        // Récupérer l'utilisateur à partir de la session
+        Long utilisateurId = (Long) session.getAttribute("id_utilisateur");
+        if(utilisateurId == null) {
+            return "redirect:/connexion";
+        }
+        Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(utilisateurId);
+        if(!optionalUtilisateur.isPresent()) {
+            return "redirect:/connexion"; 
+        }
+        Utilisateur utilisateur = optionalUtilisateur.get();
+        if(utilisateur == null) {
+            return "redirect:/connexion";
+        }
+        recette.setAuteur(utilisateur); 
         // Enregistrement de la recette
         Recette savedRecette = recetteRepository.save(recette);
 
