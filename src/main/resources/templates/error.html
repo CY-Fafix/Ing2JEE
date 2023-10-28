@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Erreur 404 - Page non trouvée</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+    <link rel="stylesheet" th:href="@{/index.css}" type="text/css" >
+</head>
+<body>
+	 <!-- Inclure l'entête -->
+    <div th:replace="header :: header"></div>	
+	
+	<main>
+		
+    <div style="margin: 100px auto; padding: 20px; max-width: 400px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
+        <h1 style="color: #d9534f; font-size: 24px;">Erreur 404 - Page non trouvée</h1>
+        <p style="font-size: 18px;">Désolé, la page que vous cherchez n'a pas été trouvée.</p>
+    </div>
+    
+    </main>
+     <!-- Inclure le footer -->
+    <div th:replace="footer :: footer"></div>
+</body>
+</html>
