@@ -11,8 +11,19 @@
 		<main>
 		<h1>Votre Profil</h1>
 		
+		<h3> Date de naissance</h3>
+		<span th:text="${profil.dateDeNaissance}"></span> <br>
+		
+		
+		<h3>Biographie</h3>	
+		<span th:text="${profil.bio}"></span>	
+		
+	    <button onclick='window.location.href = "/editerProfil"'>Editer le profil</button>
+
+		
 	   	</main>
 	    <div th:replace="footer :: footer"></div>
+	    
 	   
 </body>
 </html>

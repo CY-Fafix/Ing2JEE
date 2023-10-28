@@ -1,5 +1,6 @@
 package fr.cytech.profil;
 
+import java.sql.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +34,40 @@ public class Controlleur_Profil {
 	
 	@GetMapping(path="/Profil")
 	public String GererProfil(Model model, HttpSession session) {
-		long id=(long) session.getAttribute("id_utilisateur");
-		Utilisateur utilisateur=utilisateur_repository.findById(id);
-		Profil profil=profil_repository.findByUtilisateur(utilisateur);
+		try {
+			long id=(long) session.getAttribute("id_utilisateur");
+			Utilisateur utilisateur=utilisateur_repository.findById(id);
+			Profil profil=profil_repository.findByUtilisateur(utilisateur);
+			model.addAttribute("profil",profil);
+			
+			if(profil==null) {
+				return "creerProfil";
+			}else {
+				return "gererProfil";
+			}		
 		
-		if(profil==null) {
-			return "creerProfil";
+		}catch (java.lang.NullPointerException e) {
+			//cas ou l'utilisateur n'est pas connecté
+			model.addAttribute("erreur", "Merci de vous connecter pour acceder à cette page");
+			return "connexion"; 		
+		}
+		
+		}
+	
+	@GetMapping(path="/editerProfil")
+	public String Rediriger_EditerProfil(Model model, HttpSession session) {
+		
+		if(session.getAttribute("id_utilisateur")!=null) {
+			long id=(long)session.getAttribute("id_utilisateur");
+			Utilisateur utilisateur=utilisateur_repository.findById(id);
+			Profil profil=profil_repository.findByUtilisateur(utilisateur);
+			model.addAttribute("AncienProfil", profil);
+			return "editerProfil";
 		}else {
-			return "gererProfil";
-		}		
+			model.addAttribute("erreur", "Merci de vous connecter pour acceder à cette page");
+			return "connexion"; 	
+		}
+		
 	}
 	
 	
@@ -54,4 +80,33 @@ public class Controlleur_Profil {
 		return "redirect:/index";
 		
 	}
+	
+	@PostMapping(path="Modifier_Profil")
+	public String Modifier_Profil(Model model,@ModelAttribute Profil profil,HttpSession session) {
+		try {
+			long id=(long)session.getAttribute("id_utilisateur");
+			Utilisateur utilisateur=utilisateur_repository.findById(id);
+			Profil profilExistant=profil_repository.findByUtilisateur(utilisateur);
+			boolean modifierdate=true;
+			profil.getDateDeNaissance();
+
+			if(profil.getBio()!=null) {
+				profilExistant.setBio(profil.getBio());
+			}
+			if(modifierdate) {
+				profilExistant.setDateDeNaissance(profil.getDateDeNaissance());
+			}
+			profil_repository.save(profilExistant);
+			return "index";
+
+		}catch (java.lang.NullPointerException e) {
+			//cas ou l'utilisateur n'est pas connecté
+			model.addAttribute("erreur", "Merci de vous connecter pour acceder à cette page");
+			return "connexion"; 	
+		}
+		
+		
+	}
+	
+	
 }

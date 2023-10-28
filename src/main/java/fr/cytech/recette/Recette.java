@@ -68,5 +68,9 @@ public class Recette {
 		this.ingredientRecettes = ingredientRecettes;
 	}
 	
+	public void setAuteur(Utilisateur auteur) {
+	    this.auteur = auteur;
+	}
+	
 
 }
