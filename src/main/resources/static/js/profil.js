@@ -1,5 +1,5 @@
 function togglemdp(){
-	let mdp=document.getElementById("mdp");
+	let mdp=document.getElementById("divmdp");
 	let btnmdp=document.getElementById("btnmdp");
 	
 	if(btnmdp.textContent=="Afficher le mot de passe"){

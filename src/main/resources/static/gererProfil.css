@@ -1,0 +1,77 @@
+ /* Style de la page de profil */
+main {
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #3498db;
+    margin-bottom: 0.5rem;
+}
+
+span {
+    font-size: 1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Style spécifique pour les recettes */
+.recette {
+    margin-bottom: 2rem;
+}
+
+.recette h3 {
+    font-size: 1.7rem;
+    color: #2c3e50;
+}
+
+.recette p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Ajout d'un peu d'espace au bas de la page */
+body {
+    margin-bottom: 2rem;
+}
+
+#mdp {
+  border: 1px solid black; 
+  padding: 4px; 
+  margin-bottom: 0.5em;
+  background-color:rgba(92, 164, 213, 0.488);
+}
+
+#btnmdp{
+	margin-bottom: 0.5em;
+	background-color: #58a1d1;
+	
+}
+
+#envoyer{
+	font-size: 1.5rem;
+}
+

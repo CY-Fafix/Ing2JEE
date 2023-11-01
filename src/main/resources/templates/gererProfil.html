@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Votre profil</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="gererProfil.css">
      <script th:src="@{/js/profil.js}" src="js/profil.js"></script>
 </head>
 <body>
@@ -13,7 +14,7 @@
 		<h1>Votre Profil</h1>
 		
 		<h3> Date de naissance</h3>
-		<span th:text="${profil.dateDeNaissance}"></span> <br>
+		<span th:text="${profil.dateDeNaissance}"></span>
 		
 		
 		<h3>Biographie</h3>	
@@ -25,11 +26,15 @@
 		<h3>Mail</h3>	
 		<span th:text="${utilisateurConnecte.mail}"></span>	
 		
-		<h3>Mot de passe</h3>   
-		<span id="mdp" th:text="${utilisateurConnecte.mdp}" style="display: none;"></span>
+		<h3>Mot de passe</h3>  
+		<div id="divmdp" style="display: none;">
+			<span id="mdp" th:text="${utilisateurConnecte.mdp}"></span>
+		</div> 
 		<button id="btnmdp" onclick="togglemdp()">Afficher le mot de passe</button>
-		<br>
-	    <button onclick='window.location.href = "/editerProfil"'>Editer le profil</button>
+
+		
+		<br><br><br> 
+	    <button id="envoyer" onclick='window.location.href = "/editerProfil"'>Modifier votre profil</button>
 		<br><br><br><br><br> 
 		
 		<h1>Vos recettes</h1>
