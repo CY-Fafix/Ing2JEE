@@ -80,4 +80,10 @@ public class Controlleur_Recette {
 
         return "redirect:/index";
     }
+    
+    @GetMapping("/recherche")
+    public String recherche() {
+    	
+    	return "index.html";
+    }
 }

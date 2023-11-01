@@ -24,7 +24,6 @@ public class Controlleur_Profil {
 	@Autowired
 	Utilisateur_Repository utilisateur_repository;
 	
-
 	
 	@GetMapping(path="/creerProfil")
 	public String creerProfil(Model model,HttpSession session ) {

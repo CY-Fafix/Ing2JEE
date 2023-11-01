@@ -21,7 +21,10 @@ public class Controlleur_Utilisateur {
 	}
 	
 	@GetMapping(path="/ajouterUtilisateur")
-	public String ajouterUtilisateur() {
+	public String ajouterUtilisateur(HttpSession session) {
+		if( session.getAttribute("id_utilisateur") != null ) {
+			return "index";
+		}
 		return "ajouterUtilisateur";
 	}
 	
