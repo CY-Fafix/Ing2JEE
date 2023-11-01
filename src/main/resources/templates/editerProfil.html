@@ -5,21 +5,36 @@
     <title>Editer Profil</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="creerProfil.css">
+    <script th:src="@{/js/profil.js}" src="js/profil.js"></script>
+
 </head>
 <body>
 	
 		<div th:replace="header :: header"></div>
 		<main>
 		
-	    <form th:action="@{/Modifier_Profil}" method="post" th:object="${profil}" >
+	    <form th:action="@{/Modifier_Profil}" method="post" >
 	        <label>Date de Naissance:</label>
 	        <input type="date" name="dateDeNaissance" id="dateDeNaissance" th:value="${AncienProfil.dateDeNaissance}" required><br>
 	
 	        <label>Biographie:</label>
 	        <input type="text" name="bio" id="bio" th:value="${AncienProfil.bio}"></input><br>
-	
+	        <label>Nom:</label>
+   			 <input type="text" name="nom" id="nom" th:value="${utilisateurConnecte.nom}"><br>
+		
+		    <label>Adresse e-mail:</label>
+		    <input type="email" name="email" id="email" th:value="${utilisateurConnecte.mail}"><br>
+		    
+		    <label>Mot de passe</label>
+		    <input type="password" name="mdp" id="mdp" th:value="${utilisateurConnecte.mdp}">
+		    <button id="togglemdp" type="button" onclick="togglemdpEditer_Profil()">Afficher le mot de passe</button><br>
+		
 	        <input type="submit" value="Envoyer"></input>
+	        
+	         
+
 	    </form>
+
 	   	</main>
 	    <div th:replace="footer :: footer"></div>
 	   
