@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire</title>
+    <title>Votre profil</title>
     <link rel="stylesheet" href="index.css">
      <script th:src="@{/js/profil.js}" src="js/profil.js"></script>
 </head>
@@ -29,9 +29,16 @@
 		<span id="mdp" th:text="${utilisateurConnecte.mdp}" style="display: none;"></span>
 		<button id="btnmdp" onclick="togglemdp()">Afficher le mot de passe</button>
 		<br>
-		
-		
 	    <button onclick='window.location.href = "/editerProfil"'>Editer le profil</button>
+		<br><br><br><br><br> 
+		
+		<h1>Vos recettes</h1>
+		<div th:each="recette : ${listeRecettes}">
+		    <h3 th:text="${recette.titre}"></h3>
+		    <p th:text="${recette.description}"></p>
+	    </div>
+
+		
 
 		
 	   	</main>

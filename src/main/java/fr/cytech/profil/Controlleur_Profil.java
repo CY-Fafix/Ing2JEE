@@ -3,6 +3,7 @@ package fr.cytech.profil;
 
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.cytech.recette.Recette;
+import fr.cytech.recette.RecetteRepository;
 import fr.cytech.utilisateur.Utilisateur;
 import fr.cytech.utilisateur.Utilisateur_Repository;
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +26,9 @@ public class Controlleur_Profil {
 	
 	@Autowired
 	Utilisateur_Repository utilisateur_repository;
+	
+	@Autowired
+	RecetteRepository recette_repository;
 	
 	
 	@GetMapping(path="/creerProfil")
@@ -40,9 +46,11 @@ public class Controlleur_Profil {
 			long id=(long) session.getAttribute("id_utilisateur");
 			Utilisateur utilisateur=utilisateur_repository.findById(id);
 			Profil profil=profil_repository.findByUtilisateur(utilisateur);
+			List<Recette> liste_recettes=recette_repository.findByAuteur(utilisateur);
+			System.out.println(liste_recettes);
 			model.addAttribute("profil",profil);
-			
 			model.addAttribute("utilisateurConnecte",utilisateur);
+			model.addAttribute("listeRecettes", liste_recettes);
 			
 			if(profil==null) {
 				return "creerProfil";
