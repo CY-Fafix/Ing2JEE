@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire</title>
+    <title>Votre profil</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="gererProfil.css">
+     <script th:src="@{/js/profil.js}" src="js/profil.js"></script>
 </head>
 <body>
 	
@@ -11,8 +13,42 @@
 		<main>
 		<h1>Votre Profil</h1>
 		
+		<h3> Date de naissance</h3>
+		<span th:text="${profil.dateDeNaissance}"></span>
+		
+		
+		<h3>Biographie</h3>	
+		<span th:text="${profil.bio}"></span>	
+		
+		<h3>Utilisateur</h3>	
+		<span th:text="${utilisateurConnecte.nom}"></span>	
+		
+		<h3>Mail</h3>	
+		<span th:text="${utilisateurConnecte.mail}"></span>	
+		
+		<h3>Mot de passe</h3>  
+		<div id="divmdp" style="display: none;">
+			<span id="mdp" th:text="${utilisateurConnecte.mdp}"></span>
+		</div> 
+		<button id="btnmdp" onclick="togglemdp()">Afficher le mot de passe</button>
+
+		
+		<br><br><br> 
+	    <button id="envoyer" onclick='window.location.href = "/editerProfil"'>Modifier votre profil</button>
+		<br><br><br><br><br> 
+		
+		<h1>Vos recettes</h1>
+		<div th:each="recette : ${listeRecettes}">
+		    <h3 th:text="${recette.titre}"></h3>
+		    <p th:text="${recette.description}"></p>
+	    </div>
+
+		
+
+		
 	   	</main>
 	    <div th:replace="footer :: footer"></div>
+	    
 	   
 </body>
 </html>

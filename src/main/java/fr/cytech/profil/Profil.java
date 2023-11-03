@@ -34,7 +34,12 @@ public class Profil {
     }
 
     public Date getDateDeNaissance() {
-        return dateDeNaissance;
+    	try {
+    		return dateDeNaissance;
+    	}catch (Exception e) {
+			return null;
+		}
+        
     }
 
     public void setDateDeNaissance(Date dateDeNaissance) {
