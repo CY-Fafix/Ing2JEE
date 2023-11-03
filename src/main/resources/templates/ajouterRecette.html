@@ -5,29 +5,15 @@
     <title>Création d'une recette</title>
     <link rel="stylesheet" th:href="@{/index.css}">
 <link rel="stylesheet" th:href="@{/ajouterRecette.css}">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+ <!-- les liens pour le menu déroulant' -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 </head>
 <body>
-	
-	<!--Garder en mémoire :  
-	Ingrédients : 	
-		private String nom;
-	
-	ingredientRecette :
-    	private Ingredient ingredient; FAIT
-    	@ManyToOne
-    	private Recette recette;
-    	private Double quantite; FAIT
-    	private String unite; FAIT
-	Recette : 
-		private String titre; FAIT
-    	private String description; FAIT
-	
-	-->
 	
     <div th:replace="header :: header"></div>
 
@@ -51,29 +37,31 @@
                 
                 <hr>
                 <h3>Ingrédients</h3>
-<div id="ingredientsExistantsDetails" class="ingredients-existants-details">
-<div class="form-group">
-    <label for="ingredientsExistant">Choisir des ingrédients existants :</label>
-<select id="ingredientsExistant" multiple="multiple" style="width: 100%">
-    <option th:each="ingredient : ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.nomIngredient}"></option>
-</select>
-</div>
-</div>
+				<!-- Les ingrédients deja existants-->
+				<div id="ingredientsExistantsDetails" class="ingredients-existants-details">
+					<div class="form-group">
+					    <label for="ingredientsExistant">Choisir des ingrédients existants :</label>
+						<select id="ingredientsExistant" multiple="multiple" style="width: 100%">
+						<!-- On parcours tous les ingrédients du controlleur : on affiche, donne une valeurs" -->
+					    <option th:each="ingredient : ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.nomIngredient}"></option>
+					</select>
+					</div>
+				</div>
 				<!-- On encapsule le form d'ingrédients pour le dupliquer avec le js -->
 				<div id="ingredientsList">
 				    <!-- L'original qu'on va dupliquer -->
 				    <div class="ingredient-group">
-						
+						<!-- Nom de l'ingredient -->
 				        <div class="form-group">
 				            <label for="ingredient">Ingrédient:</label>
 				            <input type="text" id="ingredient" name="nom_ingredient">
 				        </div>
-				    
+				    	<!-- Quantite -->
 				        <div class="form-group">
 				            <label for="quantite">Quantité:</label>
 				            <input type="number" id="quantite" name="quantite">
 				        </div>
-				    
+				    	<!-- unité -->
 				        <div class="form-group">
 				            <label for="unite">Unité:</label>
 				            <select id="unite" name="unite">
@@ -95,12 +83,16 @@
     </main>
 	
     <div th:replace="footer :: footer"></div>
+    
+<!-- on initialise la bibliotheque javascript pour le design du menu déroulant, jQuery -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     $('#ingredientsExistant').select2();
+    $(".js-example-theme-single").select2({
+  theme: "Oregon"
+});
 });
 </script>
-
     <script th:src="@{/js/recette.js}" src="js/recette.js"></script>
 </body>
 </html>
