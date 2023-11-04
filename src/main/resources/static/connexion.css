@@ -1,41 +1,69 @@
-/* Styles pour le formulaire de connexion */
 .connexion-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titre-connexion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.connexion-title {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 0;
+}
+
+.connexion-logo {
+    height: 100px;
+    margin-left: 20px;
+    width: auto;
+    border-radius: 15px;
+    object-fit: cover;
 }
 
 .input-field {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    font-size: 1em;
+    border: 1px solid #ccd1d9;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .submit-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 4px;
     border: none;
-    border-radius: 3px;
+    background-color: #3498db;
+    color: #fff;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
 }
 
-/* Styles pour le message d'erreur */
 .erreur {
-    background-color: #ff0000;
+    background-color: #d9534f;
     color: #fff;
     padding: 10px;
-    border-radius: 3px;
-    margin-top: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
     text-align: center;
     font-weight: bold;
+    font-size: 16px;
 }

@@ -1,4 +1,5 @@
-/* Styles spécifiques pour la page ajouterRecette */
+/*Style pour l'ajout d'une recette*/
+
 main {
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
@@ -6,7 +7,6 @@ main {
     padding: 2rem 3rem;
 }
 
-/* les titres */
 .recette-container h2 {
     font-size: 2.2rem;
     margin-bottom: 2rem;
@@ -15,7 +15,6 @@ main {
     padding-bottom: 0.5rem;
 }
 
-/* les champs formulaire */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -53,7 +52,6 @@ main {
     border-color: #fda085;
 }
 
-/* les groupes d'ingrédients */
 .ingredient-group {
     margin-bottom: 1.5rem;
     padding: 1rem;
@@ -62,7 +60,6 @@ main {
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Bouton de soumission */
 input[type="submit"] {
     padding: 0.8rem 1.5rem;
     background-color: #2c3e50;
@@ -77,7 +74,6 @@ input[type="submit"]:hover {
     background-color: #34495e;
 }
 
-/* pour les boutons en JS ! */
 #ajouterIngredient {
     display: inline-block;
     padding: 0.6rem 1.2rem;
@@ -101,7 +97,6 @@ input[type="submit"]:hover {
 #ajouterIngredient:active {
     transform: translateY
 }
-/* ... vos autres styles ... */
 
 .form-group input[type="number"] {
     width: 100%;
@@ -109,7 +104,7 @@ input[type="submit"]:hover {
     border: 1px solid #e1e1e1;
     border-radius: 8px;
     transition: border-color 0.3s;
-    font-size: 1rem; /* ajustez selon vos besoins */
+    font-size: 1rem;
 }
 
 .form-group input[type="number"]:focus {
@@ -117,9 +112,9 @@ input[type="submit"]:hover {
 }
 
 .ingredient-group .form-group {
-    width: 32%; /* ajustez selon vos besoins */
-    display: inline-block; /* pour mettre les champs en ligne */
-    box-sizing: border-box; /* pour inclure padding et border dans la largeur */
+    width: 32%;
+    display: inline-block; 
+    box-sizing: border-box; 
 }
 
 /* Espacement entre les champs d'ingrédients */
@@ -128,11 +123,18 @@ input[type="submit"]:hover {
 }
 
 
-/* Responsive Design: Si la largeur de l'écran est inférieure à 600px */
-@media (max-width: 600px) {
-    .ingredient-group .form-group {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 1rem; /* pour un peu d'espace entre les champs */
-    }
+.ingredients-existants-details {
+    text-align: center; 
+    padding-top: 2rem; 
+    padding-bottom: 2rem;
 }
+
+.ingredients-existants-details .form-group {
+    display: inline-block;
+    width: 100%;
+}
+
+.ingredients-existants-details .form-group > label {
+    margin-bottom: 1rem; 
+}
+
