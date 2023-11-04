@@ -39,7 +39,10 @@ public class Recette {
 	public long getId() {
 		return id;
 	}
-
+	
+	public Utilisateur getAuteur() {
+		return auteur;
+	}
 	public void setId(long id) {
 		this.id = id;
 	}

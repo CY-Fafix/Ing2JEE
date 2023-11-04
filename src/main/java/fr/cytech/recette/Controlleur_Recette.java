@@ -4,14 +4,11 @@ import fr.cytech.ingredient.Ingredient;
 import fr.cytech.ingredient.Ingredient_Repository;
 import fr.cytech.ingredientRecette.IngredientRecette;
 import fr.cytech.ingredientRecette.IngredientRecette_Repository;
-import fr.cytech.profil.Profil;
-import fr.cytech.profil.Profil_Repository;
 import fr.cytech.utilisateur.*;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +31,6 @@ public class Controlleur_Recette {
     @Autowired
     private Utilisateur_Repository utilisateurRepository;
     
-    @Autowired
-    private Profil_Repository profilRepository;
-
 
 
 
@@ -145,7 +139,6 @@ public class Controlleur_Recette {
         if( session.getAttribute("id_utilisateur") != null ) {
     			long id=(long) session.getAttribute("id_utilisateur");
     			Utilisateur utilisateur=utilisateurRepository.findById(id);
-    			Profil profil=profilRepository.findByUtilisateur(utilisateur);
     			List<Recette> liste_recettes=recetteRepository.findByAuteur(utilisateur);
     			System.out.println(liste_recettes);
     			model.addAttribute("recettes", liste_recettes);
@@ -158,6 +151,69 @@ public class Controlleur_Recette {
         
     }
     
+    @GetMapping(path="/modifierRecette/{id}")
+    public String modifierRecette(@PathVariable("id") Long recetteId, Model model, HttpSession session) {
+        if(session.getAttribute("id_utilisateur") != null) {
+            // On récupere la recette par l'ID
+            Optional<Recette> recette = recetteRepository.findById(recetteId);
+            
+            // Vérifiez si la recette existe
+            if(recette.isPresent()) {
+                // Récupérez les ingrédients de la recette
+                List<IngredientRecette> ingredientsRecette = ingredientRecetteRepository.findByRecette(recette.get());
+                
+                // Ajoutez la recette et ses ingrédients au modèle
+                model.addAttribute("recette", recette.get());
+                model.addAttribute("ingredientsRecette", ingredientsRecette);
+                
+                // Retournez la vue pour modifier la recette
+                return "modifierRecette";
+            } else {
+                return "redirect:/vosRecettes";
+            }
+        } else {
+            model.addAttribute("erreur", "Merci de se connecter pour accéder à cette page");
+            return "connexion";
+        }
+    }
+    
+    @PostMapping("/modifierRecette/{id}")
+    public String modifierRecetteSubmit(@PathVariable("id") Long recetteId,
+                                        @ModelAttribute Recette recette,
+                                        @RequestParam(required = false) List<Long> ingredientRecetteIds,
+                                        @RequestParam(required = false) List<Double> quantites,
+                                        @RequestParam(required = false) List<String> unites,
+                                        HttpSession session) {
+        // Vérifiez si l'utilisateur est connecté
+        if (session.getAttribute("id_utilisateur") == null) {
+            return "redirect:/connexion";
+        }
+
+        Optional<Recette> recetteExistante = recetteRepository.findById(recetteId);
+
+        // On met a jour le titre/description de la recette
+        Recette recetteToUpdate = recetteExistante.get();
+        recetteToUpdate.setTitre(recette.getTitre());
+        recetteToUpdate.setDescription(recette.getDescription());
+
+        // On itère sur les ingrédients et on enregistre les modif
+        if (ingredientRecetteIds != null && quantites != null && unites != null) {
+            for (int i = 0; i < ingredientRecetteIds.size(); i++) {
+                Long ingredientRecetteId = ingredientRecetteIds.get(i);
+                Optional<IngredientRecette> optionalIngredientRecette = ingredientRecetteRepository.findById(ingredientRecetteId);
+                if (optionalIngredientRecette.isPresent()) {
+                    IngredientRecette ingredientRecetteToUpdate = optionalIngredientRecette.get();
+                    ingredientRecetteToUpdate.setQuantite(quantites.get(i));
+                    ingredientRecetteToUpdate.setUnite(unites.get(i));
+                    ingredientRecetteRepository.save(ingredientRecetteToUpdate);
+                }
+            }
+        }
+        recetteRepository.save(recetteToUpdate);
+        return "redirect:/vosRecettes";
+    }
+
+
     @GetMapping("/recherche")
     public String recherche() {
     	
