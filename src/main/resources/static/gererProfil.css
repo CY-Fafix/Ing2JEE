@@ -48,6 +48,9 @@
     border-radius: 0.3rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 40%;
+    margin-left: 30%;
+    font-size: 20px;
 }
 
 #envoyer:hover {
