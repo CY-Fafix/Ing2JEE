@@ -1,0 +1,65 @@
+ 
+/* creerProfil.css */
+
+main {
+	width: 35%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #2c3e50;
+}
+
+input[type="date"],
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #27ae60;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2ecc71;
+}
+
+button#togglemdp {
+    padding: 8px 12px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button#togglemdp:hover {
+    background-color: #2980b9;
+}

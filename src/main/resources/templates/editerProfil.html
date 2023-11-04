@@ -2,9 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Editer Profil</title>
+    <title>Modifier Profil</title>
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="creerProfil.css">
+    <link rel="stylesheet" href="editerprofil.css">
     <script th:src="@{/js/profil.js}" src="js/profil.js"></script>
 
 </head>
@@ -27,9 +27,9 @@
 		    
 		    <label>Mot de passe</label>
 		    <input type="password" name="mdp" id="mdp" th:value="${utilisateurConnecte.mdp}">
-		    <button id="togglemdp" type="button" onclick="togglemdpEditer_Profil()">Afficher le mot de passe</button><br>
+		    <button id="togglemdp" type="button" onclick="togglemdp()">Afficher le mot de passe</button><br>
 		
-	        <input type="submit" value="Envoyer"></input>
+	        <input type="submit" value="Enregistrer"></input>
 	        
 	         
 

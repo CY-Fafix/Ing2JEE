@@ -27,21 +27,14 @@
 		<span th:text="${utilisateurConnecte.mail}"></span>	
 		
 		<h3>Mot de passe</h3>  
-		<div id="divmdp" style="display: none;">
-			<span id="mdp" th:text="${utilisateurConnecte.mdp}"></span>
+		<div id="divmdp">
+			<input type="password" name="mdp" id="mdp" th:value="${utilisateurConnecte.mdp}" readonly>
 		</div> 
-		<button id="btnmdp" onclick="togglemdp()">Afficher le mot de passe</button>
+		<button id="togglemdp" onclick="togglemdp()">Afficher le mot de passe</button>
 
 		
 		<br><br><br> 
 	    <button id="envoyer" onclick='window.location.href = "/editerProfil"'>Modifier votre profil</button>
-		<br><br><br><br><br> 
-		
-		<h1>Vos recettes</h1>
-		<div th:each="recette : ${listeRecettes}">
-		    <h3 th:text="${recette.titre}"></h3>
-		    <p th:text="${recette.description}"></p>
-	    </div>
 
 		
 

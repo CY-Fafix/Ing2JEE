@@ -1,29 +1,32 @@
- .profil-page {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
+.profil-page {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 1rem; 
+    width: 35%;
 }
 
-.profil-page h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    text-align: center;
-}
+.profil-page h1{
+	text-align: center;
 
+}
+.profil-page h1,
 .profil-page h3 {
-    font-size: 1.5rem;
-    color: #3498db;
+    color: #2c3e50;
     margin-bottom: 0.5rem;
 }
 
-.profil-page span {
-    font-size: 1rem;
+.profil-page span, .profil-page input {
     display: block;
+    background: #f7f7f7;
+    padding: 0.5rem 1rem;
     margin-bottom: 1rem;
+    border:none;
+    width: 100%;
 }
 
-.profil-page button {
+#togglemdp {
     background-color: #3498db;
     color: #fff;
     padding: 0.5rem 1rem;
@@ -31,42 +34,40 @@
     border-radius: 0.3rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    font-size: 1rem;
-    margin-bottom: 1rem;
 }
 
-.profil-page button:hover {
+#btnmdp:hover {
     background-color: #2980b9;
 }
 
-.profil-page #mdp {
-    border: 1px solid #ccc;
-    padding: 4px;
-    margin-bottom: 0.5em;
-    background-color: #f9f9f9;
-    display: inline-block;
+#envoyer {
+    background-color: #27ae60;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.profil-page #divmdp {
-    margin-bottom: 1rem;
+#envoyer:hover {
+    background-color: #2ecc71;
 }
 
-.profil-page #envoyer {
-    font-size: 1.2rem;
-    padding: 0.7rem 1.5rem;
+.profil-page a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.profil-page .recette {
-    margin-bottom: 2rem;
+.profil-page a:hover {
+    color: #2980b9;
 }
 
-.profil-page .recette h3 {
-    font-size: 1.7rem;
-    color: #2c3e50;
+.profil-page {
+    color: #555;
 }
 
-.profil-page .recette p {
-    font-size: 1rem;
-    color: #333;
-    line-height: 1.5;
-}
+#mdp:focus {
+        outline: none;
+    }

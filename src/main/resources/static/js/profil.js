@@ -1,21 +1,4 @@
-function togglemdp(){
-	let mdp=document.getElementById("divmdp");
-	let btnmdp=document.getElementById("btnmdp");
-	
-	if(btnmdp.textContent=="Afficher le mot de passe"){
-		btnmdp.textContent="Cacher le mot de passe";
-        mdp.style.display = "inline"; 
-
-		
-	}else{
-		btnmdp.textContent="Afficher le mot de passe";
-	    mdp.style.display = "none";
-
-	}
-	}
-
-	
-function togglemdpEditer_Profil() {
+function togglemdp() {
 	let mdpField = document.getElementById("mdp");
   	let toggleButton = document.getElementById("togglemdp");
     if (mdpField.type === "password") {

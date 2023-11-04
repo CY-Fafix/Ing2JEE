@@ -13,10 +13,10 @@
 		
 	    <form th:action="@{/ajouter_Profil}" method="post" th:object="${profil}" >
 	        <label>Date de Naissance:</label>
-	        <input type="date" name="dateDeNaissance" id="dateDeNaissance" ><br>
+	        <input type="date" name="dateDeNaissance" id="dateDeNaissance" >
 	
 	        <label>Biographie:</label>
-	        <input type="text" name="bio" id="bio"required></input><br>
+	        <input type="text" name="bio" id="bio"required></input>
 	
 	        <input type="submit" value="Envoyer"></input>
 	    </form>
