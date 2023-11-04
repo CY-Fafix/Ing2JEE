@@ -2,8 +2,8 @@
 <div th:fragment="header">
     <header>
         <div class="logo">
-<!--			<img th:src="@{/images/logo.png}" alt="Texte alternatif de l'image">
--->		</div>
+			<img th:src="@{/images/logo.png}" alt="Logo site">
+		</div>
         <nav>
             <ul>
                 <li><a href="/">Accueil</a></li>
@@ -11,6 +11,7 @@
                 <li th:if="${session.id_utilisateur == null}"><a th:href="@{/connexion}">Connexion</a></li>
                 <li th:if="${session.id_utilisateur}"><a th:href="@{/Profil}">Mon Profil</a></li>
                 <li th:if="${session.id_utilisateur}")><a th:href="@{/ajouterRecette}">Créer une recette</a></li>
+				<li th:if="${session.id_utilisateur}")><a th:href="@{/vosRecettes}">Vos Recettes</a></li>
                 <li th:if="${session.id_utilisateur}"><a th:href="@{/deconnexion}">Déconnexion</a></li>
             </ul>
             

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vos Recettes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+    <link rel="stylesheet" href="/index.css">
+	<link rel="stylesheet" href="/vosRecettes.css">    
+</head>
+<body>
+
+    <div th:replace="header :: header"></div>
+
+    <main>
+		<div class="titreDiv">
+            <h1>Vos Recettes</h1>
+   			<img th:src="@{/images/cuisto.png}" alt="logo"class="titre-image">
+        </div>
+        <div class="recettesDiv">
+			<!-- On Parcours les recettes' -->
+            <div th:each="recette : ${recettes}" class="recette">
+                <h2 th:text="${recette.titre}">Titre de la recette</h2>
+                <p th:text="${recette.description}">Description de la recette</p>
+                <!-- Id de la recette dans l'url' -->
+                <button th:onclick="'window.location.href=\'/modifierRecette/' + ${recette.id} + '\''">Modifier</button>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="footer :: footer"></div>
+</body>
+</html>

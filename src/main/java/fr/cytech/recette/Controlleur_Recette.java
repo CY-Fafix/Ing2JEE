@@ -4,6 +4,8 @@ import fr.cytech.ingredient.Ingredient;
 import fr.cytech.ingredient.Ingredient_Repository;
 import fr.cytech.ingredientRecette.IngredientRecette;
 import fr.cytech.ingredientRecette.IngredientRecette_Repository;
+import fr.cytech.profil.Profil;
+import fr.cytech.profil.Profil_Repository;
 import fr.cytech.utilisateur.*;
 import jakarta.servlet.http.HttpSession;
 
@@ -31,6 +33,10 @@ public class Controlleur_Recette {
     
     @Autowired
     private Utilisateur_Repository utilisateurRepository;
+    
+    @Autowired
+    private Profil_Repository profilRepository;
+
 
 
 
@@ -132,6 +138,24 @@ public class Controlleur_Recette {
 
 
         return "redirect:/index";
+    }
+    
+    @GetMapping(path="/vosRecettes")
+    public String vosRecettes(Model model, HttpSession session) {
+        if( session.getAttribute("id_utilisateur") != null ) {
+    			long id=(long) session.getAttribute("id_utilisateur");
+    			Utilisateur utilisateur=utilisateurRepository.findById(id);
+    			Profil profil=profilRepository.findByUtilisateur(utilisateur);
+    			List<Recette> liste_recettes=recetteRepository.findByAuteur(utilisateur);
+    			System.out.println(liste_recettes);
+    			model.addAttribute("recettes", liste_recettes);
+            return "vosRecettes";
+        } else {
+            model.addAttribute("erreur", "Merci de se connecter pour accèder à cette page");
+            return "connexion";
+        }
+        
+        
     }
     
     @GetMapping("/recherche")
