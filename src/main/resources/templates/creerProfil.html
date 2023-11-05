@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-		<div th:replace="header :: header"></div>
+	<div th:replace="~{header :: header}"></div>
 		<main>
 		
 	    <form th:action="@{/ajouter_Profil}" method="post" th:object="${profil}" >
@@ -21,7 +21,7 @@
 	        <input type="submit" value="Envoyer"></input>
 	    </form>
 	   	</main>
-	    <div th:replace="footer :: footer"></div>
+	<div th:replace="~{footer :: footer}"></div>
 	   
 </body>
 </html>
