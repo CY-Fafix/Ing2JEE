@@ -10,7 +10,7 @@
 <body>
 
     <!-- Inclure l'entête -->
-    <div th:replace="header :: header"></div>
+	<div th:replace="~{header :: header}"></div>
 
     <!-- Contenu spécifique à la page d'accueil -->
     		    <main>
@@ -39,7 +39,7 @@
     </main>
 
     <!-- Inclure le footer -->
-    <div th:replace="footer :: footer"></div>
+	<div th:replace="~{footer :: footer}"></div>
 
 </body>
 </html>

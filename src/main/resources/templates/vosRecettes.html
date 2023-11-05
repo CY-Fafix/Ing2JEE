@@ -9,8 +9,7 @@
 </head>
 <body>
 
-    <div th:replace="header :: header"></div>
-
+	<div th:replace="~{header :: header}"></div>
     <main>
 		<div class="titreDiv">
             <h1>Vos Recettes</h1>
@@ -27,6 +26,7 @@
         </div>
     </main>
 
-    <div th:replace="footer :: footer"></div>
+	<div th:replace="~{footer :: footer}"></div>
+
 </body>
 </html>

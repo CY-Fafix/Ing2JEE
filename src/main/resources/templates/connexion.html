@@ -9,7 +9,7 @@
 <body>
 
 <!-- Inclure l'entête -->
-<div th:replace="header :: header"></div>
+	<div th:replace="~{header :: header}"></div>
 <main>
     <form class="connexion-form" th:action="@{/connexion}" method="post" th:object="${utilisateur}">
 		<div class = "titre-connexion">
@@ -30,7 +30,7 @@
 </main>
 
 <!-- Inclure le footer -->
-<div th:replace="footer :: footer"></div>
+	<div th:replace="~{footer :: footer}"></div>
 
 </body>
 </html>
