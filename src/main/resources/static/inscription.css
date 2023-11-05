@@ -67,3 +67,15 @@
 .inscription-form .submit-button:focus {
     background-color: #2980b9;
 }
+
+
+.erreur {
+    background-color: #d9534f;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}

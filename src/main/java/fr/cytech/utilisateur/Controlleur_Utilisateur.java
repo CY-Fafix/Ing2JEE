@@ -47,10 +47,18 @@ public class Controlleur_Utilisateur {
 	}
 	
 	@PostMapping(path="ajouter_Utilisateur")
-	public String ajouter_Utilisateur(@ModelAttribute Utilisateur utilisateur, HttpSession session) {
-		utilisateur_repository.save(utilisateur);
-	 	session.setAttribute("id_utilisateur", utilisateur_repository.findByMail(utilisateur.getMail()).getId());
-		return "redirect:/index";
+	public String ajouter_Utilisateur(@ModelAttribute Utilisateur utilisateur, HttpSession session,Model model) {
+		if(utilisateur_repository.findByMail(utilisateur.getMail())==null){
+			utilisateur_repository.save(utilisateur);
+		 	session.setAttribute("id_utilisateur", utilisateur_repository.findByMail(utilisateur.getMail()).getId());
+			return "redirect:/index";
+		}else {
+			model.addAttribute("erreur", "Ce mail est déjà utilisé");
+			return "ajouterUtilisateur";
+		}
+			
+		
+		
 		
 	}
 	

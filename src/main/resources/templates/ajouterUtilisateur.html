@@ -36,6 +36,9 @@
                 </div>
             </form>
         </div>
+        <div th:if="${erreur}" class="erreur">
+       		 <p th:text="${erreur}"></p>
+   		</div>
     </main>
 
 	<div th:replace="~{footer :: footer}"></div>
