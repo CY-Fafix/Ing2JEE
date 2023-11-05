@@ -5,15 +5,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
     	<link rel="stylesheet" th:href="@{/index.css}" type="text/css">
     	<link rel="stylesheet" th:href="@{/connexion.css}" type="text/css">
-    <!-- ... autres balises du head -->
 </head>
 <body>
 
-    <!-- Inclure l'entête -->
 	<div th:replace="~{header :: header}"></div>
 
-    <!-- Contenu spécifique à la page d'accueil -->
-    		    <main>
+    <main>
         <section class="recherche">
             <h1>Cherchez vos recettes préférées</h1>
             <form th:action="@{/recherche}" method="get">
@@ -40,7 +37,6 @@
         </section>
     </main>
 
-    <!-- Inclure le footer -->
 	<div th:replace="~{footer :: footer}"></div>
 
 </body>

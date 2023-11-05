@@ -20,7 +20,7 @@ public class Recette {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String titre;
-	@Column(length = 20000)
+	@Column(length = 2000)
 	private String description;
     
     @ManyToOne

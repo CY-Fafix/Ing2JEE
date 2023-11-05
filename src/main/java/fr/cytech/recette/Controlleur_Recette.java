@@ -62,10 +62,6 @@ public class Controlleur_Recette {
                                        @RequestParam(required = false) List<Long> ingredientsExistantsIds,
 
                                        HttpSession session) {
-        System.out.println("Les id : " + ingredientsExistantsIds);
-        System.out.println("Quantite: " + Arrays.toString(quantiteExistant));
-        System.out.println("Unite: " + Arrays.toString(uniteExistant));
-
         if(uniteExistant == null) {
             System.out.println("Pas de quantité");
         }
