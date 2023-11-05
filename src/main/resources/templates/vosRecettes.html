@@ -5,28 +5,33 @@
     <title>Vos Recettes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
     <link rel="stylesheet" href="/index.css">
-	<link rel="stylesheet" href="/vosRecettes.css">    
+    <link rel="stylesheet" href="/vosRecettes.css">    
 </head>
 <body>
 
-	<div th:replace="~{header :: header}"></div>
+    <div th:replace="~{header :: header}"></div>
     <main>
-		<div class="titreDiv">
+        <div class="titreDiv">
             <h1>Vos Recettes</h1>
-   			<img th:src="@{/images/cuisto.png}" alt="logo"class="titre-image">
+            <img th:src="@{/images/cuisto.png}" alt="logo" class="titre-image">
         </div>
         <div class="recettesDiv">
-			<!-- On Parcours les recettes' -->
+            <!-- On Parcours les recettes -->
             <div th:each="recette : ${recettes}" class="recette">
                 <h2 th:text="${recette.titre}">Titre de la recette</h2>
                 <p th:text="${recette.description}">Description de la recette</p>
-                <!-- Id de la recette dans l'url' -->
+                <!-- Id de la recette dans l'url -->
                 <button th:onclick="'window.location.href=\'/modifierRecette/' + ${recette.id} + '\''">Modifier</button>
+                <!-- Formulaire de suppression -->
+                <form th:action="@{/supprimerRecette/{id}(id=${recette.id})}" method="post">
+                    <input type="hidden" name="methode" value="supprimer" />
+                    <button type="submit" class="suppressionBouton">Supprimer</button>
+                </form>
             </div>
         </div>
     </main>
 
-	<div th:replace="~{footer :: footer}"></div>
+    <div th:replace="~{footer :: footer}"></div>
 
 </body>
 </html>

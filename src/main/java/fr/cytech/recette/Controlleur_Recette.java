@@ -212,8 +212,31 @@ public class Controlleur_Recette {
         recetteRepository.save(recetteToUpdate);
         return "redirect:/vosRecettes";
     }
+    
+    @PostMapping("/supprimerRecette/{id}")
+    public String supprimerRecette(@PathVariable("id") Long recetteId, HttpSession session) {
+    	//On check la connexion
+        if (session.getAttribute("id_utilisateur")==null) {
+            return "redirect:/connexion";
+        }
 
+        // On check si l'utilisateur est l'auteur de la recette
+        Optional<Recette> recette = recetteRepository.findById(recetteId);
+        Long userId = (Long) session.getAttribute("id_utilisateur");
+        if (recette.isPresent() && recette.get().getAuteur().getId() == userId) {
+            // On supprime d'abord les ingrédients associés à la recette
+            List<IngredientRecette> ingredientsRecette = ingredientRecetteRepository.findByRecette(recette.get());
+            for (IngredientRecette ingredientRecette : ingredientsRecette) {
+                ingredientRecetteRepository.delete(ingredientRecette);
+            }
+            //On supprime la recette
+            recetteRepository.delete(recette.get());
+        }
 
+        return "redirect:/vosRecettes";
+    }
+    
+    
     @GetMapping("/recherche")
     public String recherche() {
     	
