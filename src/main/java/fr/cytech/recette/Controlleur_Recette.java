@@ -5,11 +5,15 @@ import fr.cytech.ingredient.Ingredient_Repository;
 import fr.cytech.ingredientRecette.IngredientRecette;
 import fr.cytech.ingredientRecette.IngredientRecette_Repository;
 import fr.cytech.utilisateur.*;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -238,8 +242,40 @@ public class Controlleur_Recette {
     
     
     @GetMapping("/recherche")
-    public String recherche() {
+    public String recherche(HttpServletRequest request ,Model model) {
+    	String recherche = request.getParameter("recherche");
+    	List<Recette> recettes1 = recetteRepository.findByTitreContainingIgnoreCase(recherche);
+    	Set<Recette> concatenatedRecettes = new LinkedHashSet<Recette>(recettes1);
+
+    	if (  ingredientRepository.findByNomIngredientIgnoreCase(recherche).isPresent()) {
+
+        	Ingredient ingredient = ingredientRepository.findByNomIngredientIgnoreCase(recherche).get();
+        	List<IngredientRecette> ingredientRecette = ingredientRecetteRepository.findByIngredient(ingredient);
+        	for( IngredientRecette ingR : ingredientRecette) {
+        		if( recetteRepository.findByIngredientRecettes(ingR).isPresent() ) {
+            		Recette recette = recetteRepository.findByIngredientRecettes(ingR).get();
+            		concatenatedRecettes.add(recette);
+        		}
+        	}
+
+    	}
+    	
+        List<Recette> recettes = new ArrayList<Recette>(concatenatedRecettes);
+     
+    	model.addAttribute("recettes",recettes);	
     	
     	return "index.html";
     }
+    
+    
+    @GetMapping("/afficherRecette")
+    public String afficherRecette(@RequestParam(name="id") long id, Model model) {
+    	if(recetteRepository.findById(id).isPresent()) {
+    		Recette recette = recetteRepository.findById(id).get();
+        	model.addAttribute("recette",recette);
+        	return "afficherRecette";
+    	}
+    	return "index";
+    }
+    
 }

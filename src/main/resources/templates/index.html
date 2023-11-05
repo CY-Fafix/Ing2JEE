@@ -16,24 +16,26 @@
     		    <main>
         <section class="recherche">
             <h1>Cherchez vos recettes préférées</h1>
-            <form action="/recherche" method="GET">
+            <form th:action="@{/recherche}" method="get">
                 <input type="text" name="recherche" placeholder="Recherche...">
                 <button type="submit">Rechercher</button>
             </form>
+            <div th:if="${recettes}" class="recettesDiv">
+        		<div th:each="rec : ${recettes}" class="recette">
+					<h2 th:text="${rec.titre}"></h2>
+   	 				<a th:href="@{/afficherRecette(id=${rec.id})}"><h4 th:text="'Lien vers la recette'"></h4> </a>
+        		</div>
+        	</div>
+            
         </section>
-
-        <section class="recettes-recentes">
+        
+        <section th:if="${recettes} == null" class="recettes-recentes">
             <h2>Les recettes les plus récentes</h2>
-            <!-- Ici, il y aura un espace pour afficher les recettes une fois intégrées avec le backend -->
-            <div id="liste-recettes">
-                <!-- Exemple d'une recette (ceci sera généré dynamiquement côté serveur) -->
-                <!--
-                <div class="recette">
-                    <h3>Titre de la recette</h3>
-                    <p>Créée par <span>Auteur</span></p>
-                    <a href="/recette/id-de-la-recette">Voir les détails</a>
-                </div>
-                -->
+            <div th:if="${recetteRecente}" class="recettesDiv">
+				<div th:each="rec : ${recetteRecente}" class="recette">
+					<h2 th:text="${rec.titre}"></h2>
+   	 				<a th:href="@{/afficherRecette(id=${rec.id})}"><h4 th:text="'Lien vers ' + ${rec.titre}"></h4> </a>
+        		</div>
             </div>
         </section>
     </main>

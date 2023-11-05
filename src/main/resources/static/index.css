@@ -167,4 +167,78 @@ header .logo {
 
 
 
+ .recettesDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    gap: 20px; 
+    margin-top: 10px;
+}
+
+/* Style des cartes de recettes */
+.recette {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    width: 100%;
+    text-align: center;
+    max-width: 300px;
+}
+
+.recette:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+}
+
+.recette h2 {
+    color: #2c3e50; 
+    margin-bottom: 0.5rem; 
+}
+
+.recette p {
+    color: #333; 
+    font-size: 0.9rem; 
+    margin-bottom: 1rem; 
+}
+
+.recette button {
+    background-color: #3498db; 
+    color: #fff; 
+    border: none; 
+    padding: 0.5rem 1rem; 
+    border-radius: 0.3rem; 
+    font-weight: bold; 
+    cursor: pointer;
+}
+
+.recette button:hover {
+    background-color: #2980b9; 
+}
+
+
+main h1 {
+    text-align: center; 
+    margin-top: 2rem; 
+    margin-bottom: 1rem; 
+    color: #2c3e50;
+    font-size: 2.5rem; 
+}
+
+.titreDiv {
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column; 
+    margin-bottom: 2rem; 
+}
+
+.titre-image {
+    height: 200px; 
+    margin-bottom: 2rem; 
+    border-radius: 15px; 
+    object-fit: cover; 
+    width: auto;
+}
+
+
+
 

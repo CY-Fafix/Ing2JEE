@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+    	<link rel="stylesheet" th:href="@{/index.css}" type="text/css">
+    	<link rel="stylesheet" th:href="@{/afficherRecette.css}" type="text/css">
+</head>
+<body>
+
+    <header th:replace="header :: header"></header>
+	<main>
+    <div class="recipe-container">
+        <h1 th:text="${recette.titre}" ></h1>
+        <p th:text="'Auteur : ' + ${recette.auteur.nom}" class="author"></p>
+        <h2 >Ingrédients :</h2>
+        <div th:each="ingredientRecettes : ${recette.ingredientRecettes}" class="ingredients">
+            <ul>
+                <li th:text="${ingredientRecettes.quantite}+' '+${ingredientRecettes.unite}+' '+${ingredientRecettes.ingredient.nomIngredient}" ></li>	
+            </ul>
+        </div>
+        <h2>Description</h2>
+        <p th:text ="${recette.description}" class="description"></p>
+    </div>
+	</main>
+    <footer th:replace="footer :: footer"></footer>
+
+</body>
+</html>
