@@ -8,4 +8,6 @@ import java.util.Optional;
 @Repository
 public interface Ingredient_Repository extends JpaRepository<Ingredient, Long> {
     Optional<Ingredient> findByNomIngredient(String name);
+    Optional<Ingredient> findByNomIngredientIgnoreCase(String name);
+
 }
