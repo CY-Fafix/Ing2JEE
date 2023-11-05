@@ -15,7 +15,7 @@ Pour modifier ces informations de connexion, il faut modifier le fichier applcia
 ## Installation
 
 1. Clonez le dépôt git sur votre machine locale :
-``git clone git@github.com:CY-Fafix/Ing2JEE.git``
+``git clone https://github.com/CY-Fafix/Ing2JEE.git``
 2. Importez le projet dans Eclipse : 
 - Sélectionnez `File > Import...`
 - Choisissez `Existing Maven Projects`
