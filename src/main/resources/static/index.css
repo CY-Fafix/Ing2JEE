@@ -1,4 +1,3 @@
-/* Réinitialisation des marges et padding par défaut */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +19,6 @@ body {
 }
 
 header {
-	/* background-color: #2c3e50;  */
     background: linear-gradient(to right, #2c3e50, rgb(84, 101, 114) 50%, #2c3e50); 
     color: #ecf0f1;
     padding: 1rem 0;
@@ -159,11 +157,8 @@ footer nav a {
     transition: color 0.3s ease;
 }
 
-footer nav a:hover {
-    color: #3498db;
-}
 
-/*css de logo*/
+
 header .logo {
     margin-left: 2rem;
     font-size: 1.5rem;
