@@ -1,10 +1,12 @@
 package fr.cytech.recette;
 
 import java.util.HashSet;
+
 import java.util.Set;
 
 import fr.cytech.ingredientRecette.IngredientRecette;
 import fr.cytech.utilisateur.Utilisateur;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +20,8 @@ public class Recette {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String titre;
-    private String description;
+	@Column(length = 20000)
+	private String description;
     
     @ManyToOne
 	private Utilisateur auteur;
