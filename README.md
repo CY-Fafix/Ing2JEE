@@ -10,7 +10,7 @@ Configuration et accessibilité à la BDD :
 - Paramètres de connexion : 
 Username : sa
 Password : password
-Pour modifier ces informations de connexion, il faut modifier le fichier applciation.properties
+Pour modifier ces informations de connexion, il faut modifier le fichier application.properties
 
 ## Installation
 
